@@ -1,5 +1,6 @@
 // Script 10.7- register.js
 // This script validates a form.
+// reusable validation function to keep code dry
 
 // Function called when the form is submitted.
 // Function validates the form data.
@@ -9,7 +10,8 @@ function validateForm(e) {
     // Get the event object:
 	if (typeof e == 'undefined') e = window.event;
 
-    // Get form references:
+		// Get form references:
+	
 	var firstName = U.$('firstName');
 	var lastName = U.$('lastName');
 	var email = U.$('email');
@@ -21,31 +23,28 @@ function validateForm(e) {
 
 	// Flag variable:
 	var error = false;
+	function validateTextField (field, regex, message) {
+		'use strict';
+
+		if (regex.test(field.value.trim())) {
+			removeErrorMessage(field.name);
+		} else {
+			addErrorMessage(field.name, message);
+			error = true;
+		} 
+	}
+	
 
 	// Validate the first name:
-	if (/^[A-Z \.\-']{2,20}$/i.test(firstName.value)) {
-		removeErrorMessage('firstName');
-	} else {
-		addErrorMessage('firstName', 'Please enter your first name.');
-		error = true;
-	}
-	
+	validateTextField(firstName, /^[a-z ,.'\-]{2,30}$/i, 'Please enter letters, commas, spaces and hyphens only.' );
+	// Validate the last name:
+	validateTextField(lastName, /^[a-z ,.'\-]{2,30}$/i, 'Please enter letters, commas, spaces and hyphens only.');
 	// Validate the email address:
-	if (/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/.test(email.value)) {
-		removeErrorMessage('email');
-	} else {
-		addErrorMessage('email', 'Please enter your email address.');
-		error = true;
-	}
-	
+	validateTextField(email, /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/, 'Please enter a valid email address.');
 	// Validate the phone number:
-	if (/\d{3}[ \-\.]?\d{3}[ \-\.]?\d{4}/.test(phone.value)) {
-		removeErrorMessage('phone');
-	} else {
-		addErrorMessage('phone', 'Please enter your phone number.');
-		error = true;
-	}
-	
+	validateTextField(phone, /\d{3}[ \-]?\d{3}[ \-]?\d{4}/, 'Please enter your phone number in the format XXX XXX XXX, XXX-XXX-XXXX or XXXXXXXXXX.');
+	// Validate City:
+	validateTextField(city, /^[a-z ,.'\-]{2,40}$/i, 'Please enter letters, commas, spaces and hyphens only.');
 	// Validate the state:
 	if (state.selectedIndex != 0) {
 		removeErrorMessage('state');
@@ -55,12 +54,47 @@ function validateForm(e) {
 	}
 	
 	// Validate the zip code:
-	if (/^\d{5}(-\d{4})?$/.test(zip.value)) {
+	// separate function to dynamically create regular expression that will target correct leading digit depending on state/territory
+	function postCodeRegex (state) {
+		
+		switch(state) {
+			case 'WA' :
+				var prefix = '6';
+				break;
+			case 'SA' :
+				var prefix = '5';
+				break;
+			case 'VIC' :
+				var prefix = '3|8';
+				break;
+			case 'TAS' :
+				var prefix = '7';
+				break;
+			case 'NSW' :
+				var prefix = '1|2';
+				break;
+			case 'QLD' :
+				var prefix = '4|9';
+				break;
+			case 'ACT' :
+			case 'NT' :
+				var prefix = '0';
+				break;
+			default:
+			var	prefix = '';
+		}
+		
+		return new RegExp('^'+prefix+'\\d{3}$'); //special characters need to be double escaped using regex constructor see https://stackoverflow.com/questions/17863066/why-do-regex-constructors-need-to-be-double-escaped
+	}
+	// validates depending if state has been selected
+	if (state.selectedIndex != 0) {
 		removeErrorMessage('zip');
+		validateTextField(zip, postCodeRegex(state.value), 'Please enter your post code starting with the correct digit and with exactly 4 digits.');
 	} else {
-			addErrorMessage('zip', 'Please enter your zip code.');
+		addErrorMessage('zip', 'Please select your state before you enter your post code');
 		error = true;
 	}
+	
 
     // If an error occurred, prevent the default behavior:
 	if (error) {
