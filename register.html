@@ -16,28 +16,69 @@
         <fieldset>
             <legend>Register</legend>
             <p>All fields are required.</p>
-            <div class="two"><label for="firstName">First Name</label><input type="text" name="firstName" id="firstName" required></div>
-            <div class="two"><label for="lastName">Last Name</label><input type="text" name="lastName" id="lastName" required></div>
-            <div class="two"><label for="email">Email Address</label><input type="text" name="email" id="email" required></div>
-            <div class="two"><label for="phone">Phone Number<span class="tooltip">In the format XXX XXX XXXX or XXX-XXX-XXXX or XXXXXXXXXX.</span></label><input type="text" name="phone" id="phone" required></div>
-            <div class="two"><label for="city">City</label><input type="text" name="city" id="city" required></div>
-            <div class="two"><label for="state">State</label><select name="state" id="state">
-				<option value="">Select a State</option> 
-				<option value="WA">Western Australia</option> 
-				<option value="SA">South Australia</option> 
-                <option value="TAS">Tasmania</option> 
-                <option value="VIC">Victoria</option>
-				<option value="NSW">New South Wales</option> 
-				<option value="QLD">Queensland</option> 
-				<option value="NT">Northern Territory</option>           
-				<option value="ACT">Australian Capital Territory</option>
-			</select></div>
-            <div class="two"><label for="zip">Post Code</label><input type="text" name="zip" id="zip" required></div>
-            <div class="one"><input type="checkbox" name="terms" id="terms" required> I agree to the terms, whatever they are.</div>
-            <div class="one"><input type="submit" value="Register" id="submit"></div>
+            <div class="two">
+                <label for="firstName">First Name
+                    <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
+                </label>
+                <input type="text" name="firstName" id="firstName" required>
+            </div>
+            <div class="two">
+                <label for="lastName">Last Name
+                    <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
+                </label>
+                <input type="text" name="lastName" id="lastName" required>
+            </div>
+            <div class="two">
+                <label for="email">Email Address
+                    <span class="tooltip">Please enter a valid email address</span>
+                </label>
+                <input type="text" name="email" id="email" required>
+            </div>
+            <div class="two">
+                <label for="phone">Phone Number
+                    <span class="tooltip">In the format XXX XXX XXXX or XXX-XXX-XXXX or XXXXXXXXXX.</span>
+                </label>
+                <input type="text" name="phone" id="phone" required>
+            </div>
+            <div class="two">
+                <label for="city">City
+                    <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
+                </label>
+                <input type="text" name="city" id="city" required>
+            </div>
+            <div class="two">
+                <label for="state">State
+                    <span class="tooltip">Please select a state from the list</span>
+                </label>
+                <select name="state" id="state">
+                    <option value="">Select a State</option> 
+                    <option value="WA">Western Australia</option> 
+                    <option value="SA">South Australia</option> 
+                    <option value="TAS">Tasmania</option> 
+                    <option value="VIC">Victoria</option>
+                    <option value="NSW">New South Wales</option> 
+                    <option value="QLD">Queensland</option> 
+                    <option value="NT">Northern Territory</option>           
+                    <option value="ACT">Australian Capital Territory</option>
+                </select>
+            </div>
+            <div class="two">
+                <label for="zip">Post Code
+                    <span class="tooltip">In the format XXXX and starting with the correct digit for your state</span>
+                </label>
+                <input type="text" name="zip" id="zip" required>
+            </div>
+            <div class="one">
+                <input type="checkbox" name="terms" id="terms" required> I agree to the terms, whatever they are.
+            </div>
+            <div class="one">
+                <input type="submit" value="Register" id="submit">
+            </div>
             <input type="reset">
         </fieldset>
     </form>
+    <!-- allows use of latest ES2015+ script features on older browsers NOT A LIBRARY OR FRAMEWORK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.min.js" integrity="sha256-lu1gm0Fb5u5n6tuNLefOZNE96ckovOjhNzvsl+Iz50w=" crossorigin="anonymous"></script>
     <script src="js/utilities.js"></script>
     <script src="js/errorMessages.js"></script>
     <script src="js/register.js"></script>

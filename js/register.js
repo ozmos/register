@@ -44,7 +44,7 @@ function validateForm(e) {
 	// Validate the phone number:
 	validateTextField(phone, /\d{3}[ \-]?\d{3}[ \-]?\d{4}/, 'Please enter your phone number in the format XXX XXX XXX, XXX-XXX-XXXX or XXXXXXXXXX.');
 	// Validate City:
-	validateTextField(city, /^[a-z ,.'\-]{2,40}$/i, 'Please enter letters, commas, spaces and hyphens only.');
+	validateTextField(city, /^[a-z ,.'\-]{2,40}$/i, 'Please enter letters, commas, spaces, hyphens  and full-stops only.');
 	// Validate the state:
 	if (state.selectedIndex != 0) {
 		removeErrorMessage('state');
@@ -56,7 +56,7 @@ function validateForm(e) {
 	// Validate the zip code:
 	// separate function to dynamically create regular expression that will target correct leading digit depending on state/territory
 	function postCodeRegex (state) {
-		
+		'use strict';
 		switch(state) {
 			case 'WA' :
 				var prefix = '6';
@@ -65,16 +65,16 @@ function validateForm(e) {
 				var prefix = '5';
 				break;
 			case 'VIC' :
-				var prefix = '3|8';
+				var prefix = '3|8'; //allows for PO box post code
 				break;
 			case 'TAS' :
 				var prefix = '7';
 				break;
 			case 'NSW' :
-				var prefix = '1|2';
+				var prefix = '1|2'; //allows for PO box post code
 				break;
 			case 'QLD' :
-				var prefix = '4|9';
+				var prefix = '4|9'; //allows for PO box post code
 				break;
 			case 'ACT' :
 			case 'NT' :
@@ -141,7 +141,13 @@ window.onload = function() {
 	// Watch for changes on the terms checkbox:
     U.addEvent(U.$('terms'), 'change', toggleSubmit);
 
-	// Enbable tooltips on the phone number:
-	U.enableTooltips('phone');
+	// Enbable tooltips on all input elements:
+	var inputs = ['firstName', 'lastName', 'phone', 'email', 'city', 'state', 'zip'];
+	/* inputs.forEach(id => U.enableTooltips(id)); */
+	es5: 
+	inputs.forEach(function(id) {
+		U.enableTooltips(id);
+	});
+	
     
 };

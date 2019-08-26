@@ -21,12 +21,12 @@ function addErrorMessage(id, msg) {
         // Create the span:
         span = document.createElement('span');
         span.id = newId;
-		span.className = 'error'
+		span.classList.add('error');
         span.appendChild(document.createTextNode(msg));
         
         // Add the span to the parent:
         elem.parentNode.appendChild(span);
-        elem.previousSibling.className = 'error';
+        elem.previousSibling.classList.add('error');
 
     } // End of main IF-ELSE.
 
@@ -42,7 +42,7 @@ function removeErrorMessage(id) {
 	if (span) {
     
 	    // Remove the class from the label:
-	    span.previousSibling.previousSibling.className = null;
+	    span.previousSibling.previousSibling.classList.remove('error');
     
 	    // Remove the span:
 	    span.parentNode.removeChild(span);

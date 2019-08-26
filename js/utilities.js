@@ -53,28 +53,38 @@ var U = {
 
 	enableTooltips: function(id) {
 	    'use strict';
-	
+        
 		// Get a reference to the element:
 		var elem = this.$(id);
-
-		// Add four event handlers to the element:
-		this.addEvent(elem, 'focus', this.showTooltip);
+        // Add four event handlers to the element:
+        this.addEvent(elem, 'focus', this.showTooltip);
 	    this.addEvent(elem, 'mouseover', this.showTooltip);
 	    this.addEvent(elem, 'blur', this.hideTooltip);
-	    this.addEvent(elem, 'mouseout', this.hideTooltip);
-	
+        this.addEvent(elem, 'mouseout', this.hideTooltip);
+        // add same event handlers to label element:
+        var label = elem.previousElementSibling;
+       
+        this.addEvent(label, 'focus', this.showTooltip);
+        this.addEvent(label, 'mouseover', this.showTooltip);
+	    this.addEvent(label, 'blur', this.hideTooltip);
+        this.addEvent(label, 'mouseout', this.hideTooltip);
+      
 	}, // End of enableTooltips() function.
 
 	showTooltip: function(e) {
 	    'use strict';
-	
+        
 		// Get the event object:
 		if (typeof e == 'undefined') var e = window.event;
 
 		// Get the event target:
-		var target = e.target || e.srcElement;
-		target.previousSibling.lastChild.style.visibility = 'visible';
-
+        var target = e.target || e.srcElement;
+        if (target.previousElementSibling) {
+            target.previousElementSibling.lastElementChild.style.visibility = 'visible';
+        } else {
+            target.lastElementChild.style.visibility = 'visible';
+        }
+		
 	}, // End of showTooltip() function.
 
 	hideTooltip: function(e) {
@@ -85,7 +95,11 @@ var U = {
 
 		// Get the event target:
 		var target = e.target || e.srcElement;
-		target.previousSibling.lastChild.style.visibility = 'hidden';
+		if (target.previousElementSibling) {
+            target.previousElementSibling.lastElementChild.style.visibility = 'hidden';
+        } else {
+            target.lastElementChild.style.visibility = 'hidden';
+        }
 
 	} // End of hideTooltip() function.
 
