@@ -20,37 +20,37 @@
                 <label for="firstName">First Name
                     <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
                 </label>
-                <input type="text" name="firstName" id="firstName" required>
+                <input type="text" name="firstName" class="field" id="firstName" data-message="first name" required>
             </div>
             <div class="two">
                 <label for="lastName">Last Name
                     <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
                 </label>
-                <input type="text" name="lastName" id="lastName" required>
+                <input type="text" name="lastName" class="field" id="lastName" data-message="last name" required>
             </div>
             <div class="two">
                 <label for="email">Email Address
                     <span class="tooltip">Please enter a valid email address</span>
                 </label>
-                <input type="text" name="email" id="email" required>
+                <input type="text" name="email" class="field" id="email" data-message="email address" required>
             </div>
             <div class="two">
                 <label for="phone">Phone Number
                     <span class="tooltip">In the format XXX XXX XXXX or XXX-XXX-XXXX or XXXXXXXXXX.</span>
                 </label>
-                <input type="text" name="phone" id="phone" required>
+                <input type="text" name="phone" class="field" id="phone" data-message="phone number" required>
             </div>
             <div class="two">
                 <label for="city">City
                     <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
                 </label>
-                <input type="text" name="city" id="city" required>
+                <input type="text" name="city" class="field" id="city" data-message="city" required>
             </div>
             <div class="two">
                 <label for="state">State
                     <span class="tooltip">Please select a state from the list</span>
                 </label>
-                <select name="state" id="state">
+                <select name="state" class="field" id="state">
                     <option value="">Select a State</option> 
                     <option value="WA">Western Australia</option> 
                     <option value="SA">South Australia</option> 
@@ -66,7 +66,7 @@
                 <label for="zip">Post Code
                     <span class="tooltip">In the format XXXX and starting with the correct digit for your state</span>
                 </label>
-                <input type="text" name="zip" id="zip" required>
+                <input type="text" name="zip" class="field" id="zip" data-message="post code" required>
             </div>
             <div class="one">
                 <input type="checkbox" name="terms" id="terms" required> I agree to the terms, whatever they are.
