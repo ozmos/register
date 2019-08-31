@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Registration Form</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/newform.css">
+</head>
+
+<body>
+    <!-- Script 10.6 - register.html -->
+    <form action="#" method="post" id="theForm">
+        <fieldset>
+            <legend>Register</legend>
+            <p>All fields are required.</p>
+            <div class="two">
+                <label for="firstName">First Name
+                    <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
+                </label>
+                <input type="text" name="firstName" class="field" id="firstName" data-message="first name" required>
+            </div>
+            <div class="two">
+                <label for="lastName">Last Name
+                    <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
+                </label>
+                <input type="text" name="lastName" class="field" id="lastName" data-message="last name" required>
+            </div>
+            <div class="two">
+                <label for="email">Email Address
+                    <span class="tooltip">Please enter a valid email address</span>
+                </label>
+                <input type="text" name="email" class="field" id="email" data-message="email address" required>
+            </div>
+            <div class="two">
+                <label for="phone">Phone Number
+                    <span class="tooltip">In the format XXX XXX XXXX or XXX-XXX-XXXX or XXXXXXXXXX.</span>
+                </label>
+                <input type="text" name="phone" class="field" id="phone" data-message="phone number" required>
+            </div>
+            <div class="two">
+                <label for="city">City
+                    <span class="tooltip">Letters, commas, spaces, hyphens and full-stops only</span>
+                </label>
+                <input type="text" name="city" class="field" id="city" data-message="city" required>
+            </div>
+            <div class="two">
+                <label for="state">State
+                    <span class="tooltip">Please select a state from the list</span>
+                </label>
+                <select name="state" class="field" id="state">
+                    <option value="">Select a State</option> 
+                    <option value="WA">Western Australia</option> 
+                    <option value="SA">South Australia</option> 
+                    <option value="TAS">Tasmania</option> 
+                    <option value="VIC">Victoria</option>
+                    <option value="NSW">New South Wales</option> 
+                    <option value="QLD">Queensland</option> 
+                    <option value="NT">Northern Territory</option>           
+                    <option value="ACT">Australian Capital Territory</option>
+                </select>
+            </div>
+            <div class="two">
+                <label for="zip">Post Code
+                    <span class="tooltip">In the format XXXX and starting with the correct digit for your state</span>
+                </label>
+                <input type="text" name="zip" class="field" id="zip" data-message="post code" required>
+            </div>
+            <div class="one">
+                <input type="checkbox" name="terms" id="terms" required> I agree to the terms, whatever they are.
+            </div>
+            <div class="one">
+                <input type="submit" value="Register" id="submit">
+            </div>
+            <input type="reset">
+        </fieldset>
+    </form>
+    <!-- allows use of latest ES2015+ script features on older browsers NOT A LIBRARY OR FRAMEWORK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.min.js" integrity="sha256-lu1gm0Fb5u5n6tuNLefOZNE96ckovOjhNzvsl+Iz50w=" crossorigin="anonymous"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/errorMessages.js"></script>
+    <script src="js/register.js"></script>
+</body>
+
+</html>
